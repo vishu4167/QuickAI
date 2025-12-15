@@ -1,17 +1,15 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
   "name": "server",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "QuickAI server",
+  "main": "dist/server.js",
   "type": "module",
   "scripts": {
-    "server": "nodemon server.js",
-    "start": "node server.js"
+    "dev": "tsx server.ts",
+    "dev:watch": "tsx watch server.ts",
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@clerk/express": "^1.7.49",
     "@neondatabase/serverless": "^1.0.2",
@@ -24,6 +22,12 @@
     "openai": "^6.9.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.11"
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^25.0.1",
+    "nodemon": "^3.1.11",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
   }
 }

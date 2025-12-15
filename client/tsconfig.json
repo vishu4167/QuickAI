@@ -1,0 +1,56 @@
+{
+  // Visit https://aka.ms/tsconfig to read more about this file
+  "compilerOptions": {
+    // ---------------------------
+    // File Layout
+    // ---------------------------
+    // "rootDir": "./src",
+    // "outDir": "./dist",
+
+    // ---------------------------
+    // Environment Settings
+    // ---------------------------
+    "module": "esnext",
+    "moduleResolution": "bundler",
+
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "types": ["node"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,  // .ts imports allowed
+
+    // ---------------------------
+    // Other Outputs
+    // ---------------------------
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // ---------------------------
+    // Stricter Typechecking Options
+    // ---------------------------
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // ---------------------------
+    // JSX & React
+    // ---------------------------
+    "jsx": "react-jsx",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+
+    // ---------------------------
+    // Module Checks
+    // ---------------------------
+    "noUncheckedSideEffectImports": true,
+    "moduleDetection": "force",
+
+    // ---------------------------
+    // Skip unnecessary checks
+    // ---------------------------
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
+}
