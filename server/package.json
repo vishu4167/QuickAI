@@ -2,13 +2,13 @@
   "name": "server",
   "version": "1.0.0",
   "description": "QuickAI server",
-  "main": "dist/server.js",
+  "main": "api/index.ts",
   "type": "module",
   "scripts": {
-    "dev": "tsx server.ts",
-    "dev:watch": "tsx watch server.ts",
+    "dev": "tsx api/index.ts",
+    "dev:watch": "tsx watch api/index.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node api/index.js"
   },
   "dependencies": {
     "@clerk/express": "^1.7.49",
