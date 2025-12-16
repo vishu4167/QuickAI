@@ -21,10 +21,4 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/ai', aiRouter);
 app.use('/api/user', userRouter);
 
-// ✅ Temporary - Local testing ke liye
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
-export default app;
+export default app; 
