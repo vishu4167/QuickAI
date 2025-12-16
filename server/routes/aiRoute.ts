@@ -1,4 +1,4 @@
-import express, { RequestHandler } from "express";
+import express from "express";
 import { auth } from "../middlewares/auth.js";
 import {
   generateArticle,
@@ -11,10 +11,10 @@ import { upload } from "../configs/multer.js";
 
 const aiRouter = express.Router();
 
-aiRouter.post("/generate-article", auth as RequestHandler, generateArticle as RequestHandler);
-aiRouter.post("/generate-blog-title", auth as RequestHandler, generateBlogTitle as RequestHandler);
-aiRouter.post("/generate-image", auth as RequestHandler, generateImage as RequestHandler);
-aiRouter.post("/remove-image-background", upload.single("image"), auth as RequestHandler, removeImageBackground as RequestHandler);
-aiRouter.post("/remove-image-object", upload.single("image"), auth as RequestHandler, removeImageObject as RequestHandler);
+aiRouter.post("/generate-article", auth as any, generateArticle as any);
+aiRouter.post("/generate-blog-title", auth as any, generateBlogTitle as any);
+aiRouter.post("/generate-image", auth as any, generateImage as any);
+aiRouter.post("/remove-image-background", upload.single("image"), auth as any, removeImageBackground as any);
+aiRouter.post("/remove-image-object", upload.single("image"), auth as any, removeImageObject as any);
 
 export default aiRouter;
