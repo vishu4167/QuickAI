@@ -19,20 +19,35 @@ interface Creation {
   updated_at?: string
 }
 
-
 const Dashboard: React.FC = () => {
   const [creations, setCreations] = useState<Creation[]>([])
   const [loading, setLoading] = useState<boolean>(true)
-  const { getToken } = useAuth()
+  const { getToken, isSignedIn } = useAuth()  
 
   const getDashboardData = async () => {
     try {
+    
+      if (!isSignedIn) {
+        toast.error("Please sign in to continue")
+        setLoading(false)
+        return
+      }
+
+      const token = await getToken()  
+      
+      
+      if (!token) {
+        toast.error("Authentication failed. Please sign in again.")
+        setLoading(false)
+        return
+      }
+
       const { data } = await axios.get<{
         success: boolean
         creations: Creation[]
         message?: string
       }>("/api/user/get-user-creations", {
-        headers: { Authorization: `Bearer ${await getToken()}` },
+        headers: { Authorization: `Bearer ${token}` },  
       })
 
       if (data.success) {
@@ -41,14 +56,15 @@ const Dashboard: React.FC = () => {
         toast.error(data.message || "Something went wrong")
       }
     } catch (error: any) {
-      toast.error(error?.message || "Something went wrong")
+      console.error("Dashboard error:", error)  
+      toast.error(error?.response?.data?.message || error?.message || "Failed to load data")
     }
     setLoading(false)
   }
 
   useEffect(() => {
     getDashboardData()
-  }, [])
+  }, [isSignedIn])  
 
   return (
     <div className="h-full overflow-y-scroll p-6">
@@ -87,9 +103,13 @@ const Dashboard: React.FC = () => {
       ) : (
         <div className="space-y-3">
           <p className="mt-6 mb-4">Recent Creations</p>
-          {creations.map(item => (
-            <CreationItem key={item.id} item={item} />
-          ))}
+          {creations.length > 0 ? (
+            creations.map(item => (
+              <CreationItem key={item.id} item={item} />
+            ))
+          ) : (
+            <p className="text-gray-500 text-center mt-10">No creations yet. Start creating!</p>
+          )}
         </div>
       )}
     </div>
