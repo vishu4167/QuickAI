@@ -1,3 +1,4 @@
 node_modules
 .env
-echo dist/ >> server/.gitignore
+client/dist/
+server/dist/
