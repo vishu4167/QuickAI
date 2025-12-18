@@ -257,12 +257,12 @@ export const removeImageObject = async (
     const { public_id } = await cloudinary.uploader.upload(image.path);
 
     const imageUrl = cloudinary.url(public_id, {
-      transformation: [{ effect: `gen_remove:${object}` }],  // ✅ Fixed: Added backticks
+      transformation: [{ effect: `gen_remove:${object}` }],  
       resource_type: "image",
     });
 
     await sql`INSERT INTO creations (user_id, prompt, content, type)
-    VALUES (${userId}, ${`Removed ${object} from image`}, ${imageUrl}, 'image')`; // ✅ Fixed: Added backticks
+    VALUES (${userId}, ${`Removed ${object} from image`}, ${imageUrl}, 'image')`; 
 
     return res.json({ success: true, content: imageUrl });
   } catch (error) {

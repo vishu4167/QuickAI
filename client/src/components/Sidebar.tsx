@@ -29,7 +29,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebar, setSidebar }) => {
   const { user } = useUser()
   const { signOut, openUserProfile } = useClerk()
 
-  if (!user) return null // Safety check
+  if (!user) return null 
 
   return (
     <>

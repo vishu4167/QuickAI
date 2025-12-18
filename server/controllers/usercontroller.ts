@@ -87,7 +87,7 @@ export const toggleLikeCreations = async (
       message = "Creation liked";
     }
 
-    const formattedArray = `{${updatedLikes.join(",")}}`; // ✅ Fixed: Added backticks
+    const formattedArray = `{${updatedLikes.join(",")}}`; 
 
     await sql`
       UPDATE creations 
